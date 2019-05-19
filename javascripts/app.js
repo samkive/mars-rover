@@ -1,6 +1,6 @@
 // Rover Object Goes Here
 var rover ={
-  direction: "N",
+  direction: "&uarr;",
   x: 0,
   y: 0,
   travelLog:[],
@@ -10,6 +10,9 @@ var rover ={
 
 // ======================
 function turnLeft(rover){
+
+  ChangeLetterToArrow(rover.direction);
+
   console.log("turnLeft was called!");
   if(rover.direction=="N")
       rover.direction="W";
@@ -24,12 +27,15 @@ function turnLeft(rover){
 
   console.log("The rover is now pointing to the : " +rover.direction + " direction");
   var roverID = ""+rover.x + "," + rover.y;
+  ChangeLetterToArrow(rover.direction);
   document.getElementById(roverID).innerHTML = rover.direction;
 }
 
 
 
 function turnRight(rover){
+
+  ChangeLetterToArrow(rover.direction);
   console.log("turnRight was called!");
   if(rover.direction=="N")
       rover.direction="E";
@@ -44,6 +50,7 @@ function turnRight(rover){
 
   console.log("The rover is now pointing to the : " +rover.direction + " direction");
   var roverID = ""+rover.x + "," + rover.y;
+  ChangeLetterToArrow(rover.direction);
   document.getElementById(roverID).innerHTML = rover.direction;
 }
 
@@ -51,6 +58,7 @@ function moveForward(rover){
   console.log("moveForward was called");
   var roverID = ""+rover.x + "," + rover.y;
   document.getElementById(roverID).innerHTML="";
+  ChangeLetterToArrow(rover.direction);
   var wrongMove=false;
   if(rover.direction=="N"){
     if(rover.y>0)
@@ -91,7 +99,7 @@ function moveForward(rover){
  
   }
   roverID = ""+rover.x + "," + rover.y;
-  
+  ChangeLetterToArrow(rover.direction);
   document.getElementById(roverID).innerHTML = rover.direction;
 }
 
@@ -119,4 +127,27 @@ function command(commandline){
   }
 
   console.log(rover.travelLog);
+}
+
+
+
+function ChangeLetterToArrow(letter){
+  if(letter == "N")
+  rover.direction = "&uarr;";
+  else if (letter=="S")
+  rover.direction = "&darr;";
+  else if (letter == "E")
+  rover.direction = "&rarr;";
+  else if (letter == "W")
+  rover.direction = "&larr;";
+  else if (letter == "&uarr;")
+  rover.direction = "N";
+  else if (letter == "&darr;")
+  rover.direction = "S";
+  else if (letter == "&rarr;")
+  rover.direction = "E";
+  else if (letter == "&larr;")
+  rover.direction ="W";
+  else 
+   console.log("Wrong input in changeLetter");
 }

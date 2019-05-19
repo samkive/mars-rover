@@ -117,7 +117,9 @@ function command(commandline){
     }
     else if(character=="f"){
       moveForward(rover);
-
+    }
+    else if (character=="b"){
+      MoveBackward(rover);
     }
     else{
       console.log("Wrong character");
@@ -127,6 +129,58 @@ function command(commandline){
   }
 
   console.log(rover.travelLog);
+}
+
+function MoveBackward(rover){
+
+  console.log("moveBackward was called");
+  var roverID = ""+rover.x + "," + rover.y;
+  document.getElementById(roverID).innerHTML="";
+  ChangeLetterToArrow(rover.direction);
+  var wrongMove=false;
+  if(rover.direction=="N"){
+    if(rover.y<9)
+    rover.y++;
+    else
+    wrongMove=true;}
+  else if(rover.direction=="E" ){
+    if(rover.x>0)
+    rover.x--;
+    else
+    wrongMove=true;
+
+  }
+  else if(rover.direction=="S"){
+    if(rover.y>0)
+    rover.y--;
+    else
+    wrongMove=true;
+  }
+  else if(rover.direction=="W"){
+    if(rover.x<9)
+    rover.x++;
+    else
+    wrongMove=true;
+    
+  }
+  else
+    throw "wrong direction";
+
+
+  
+  if(wrongMove){
+  console.log("Bounderie reached, cannot move in this direction");
+
+  }
+  else{
+  console.log("The rover's coordinates are now : ( " +rover.x + " , " + rover.y + " )");
+ 
+  }
+  roverID = ""+rover.x + "," + rover.y;
+  ChangeLetterToArrow(rover.direction);
+  document.getElementById(roverID).innerHTML = rover.direction;
+
+
 }
 
 
